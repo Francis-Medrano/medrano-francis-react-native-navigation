@@ -10,6 +10,9 @@ export type CartItem = {
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: { id: string; name: string; price: number }) => void;
+  increment: (id: string) => void;
+  decrement: (id: string) => void;
+  remove: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -29,8 +32,30 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  const increment = (id: string) => {
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decrement = (id: string) => {
+    setCart(prevCart =>
+      prevCart
+        .map(item =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter(item => item.quantity > 0)
+    );
+  };
+
+  const remove = (id: string) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== id));
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, increment, decrement, remove }}>
       {children}
     </CartContext.Provider>
   );

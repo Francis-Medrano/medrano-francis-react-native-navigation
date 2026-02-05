@@ -36,7 +36,7 @@ export default function HomeScreen() {
         contentContainerStyle={[HomeStyle.list, { paddingTop: 20 }]}
         columnWrapperStyle={HomeStyle.row}
         showsVerticalScrollIndicator={false}
-        ListFooterComponent={<View style={{ height: 120 }} />}
+        ListFooterComponent={<View style={{ height: 130 }} />}
       />
       <BottomBar />
     </View>
