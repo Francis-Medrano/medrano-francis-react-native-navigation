@@ -2,15 +2,13 @@ import React from 'react';
 import { Text, View, FlatList, Pressable } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
-
-
+import BottomBar from '../components/BottomBar';
 
 const items = itemsData.map((item, i) => ({
   id: i.toString(),
   name: item.name,
   price: item.price,
 }));
-
 
 export default function HomeScreen() {
   const renderItem = ({ item }: { item: { id: string; name: string; price: number } }) => (
@@ -22,16 +20,17 @@ export default function HomeScreen() {
 
   return (
     <View style={HomeStyle.container}>
-      <Text style={HomeStyle.title}>Shop</Text>
       <FlatList
         data={items}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         numColumns={2}
-        contentContainerStyle={HomeStyle.list}
+        contentContainerStyle={[HomeStyle.list, { paddingTop: 20 }]}
         columnWrapperStyle={HomeStyle.row}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View style={{ height: 120 }} />}
       />
+      <BottomBar />
     </View>
   );
 }
