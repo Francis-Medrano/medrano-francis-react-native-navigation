@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, FlatList, Pressable } from 'react-native';
+import { Text, View, FlatList, Pressable, TouchableOpacity } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
+import { useCart } from '../context/CartContext';
 import BottomBar from '../components/BottomBar';
 
 const items = itemsData.map((item, i) => ({
@@ -11,11 +12,18 @@ const items = itemsData.map((item, i) => ({
 }));
 
 export default function HomeScreen() {
+  const { addToCart } = useCart();
   const renderItem = ({ item }: { item: { id: string; name: string; price: number } }) => (
-    <Pressable style={HomeStyle.item}>
+    <View style={HomeStyle.item}>
       <Text style={HomeStyle.itemText}>{item.name}</Text>
       <Text style={{ fontSize: 16, color: '#888', marginTop: 8 }}>₱{item.price}</Text>
-    </Pressable>
+      <TouchableOpacity
+        style={HomeStyle.addToCartButton}
+        onPress={() => addToCart(item)}
+      >
+        <Text style={HomeStyle.addToCartButtonText}>Add to Cart</Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
