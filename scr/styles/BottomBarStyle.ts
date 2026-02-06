@@ -5,7 +5,7 @@ const { width } = Dimensions.get('window');
 const BottomBarStyle = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -1,
     width: width,
     height: 120,
     borderTopLeftRadius: 16,

@@ -1,18 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 const CheckoutButtonStyle = StyleSheet.create({
   button: {
-    paddingVertical: 14,
-    paddingHorizontal: 24,
+    paddingVertical: screenWidth * 0.035,
+    paddingHorizontal: screenWidth * 0.06,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 24,
-    marginTop: 16,
-    marginBottom: 16,
+    marginHorizontal: screenWidth * 0.06,
+    marginTop: screenWidth * 0.04,
+    marginBottom: screenWidth * 0.04,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: screenWidth * 0.04,
     fontWeight: '600',
   },
 });

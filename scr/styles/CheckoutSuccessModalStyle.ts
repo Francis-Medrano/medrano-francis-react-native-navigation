@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const modalWidth = Math.min(screenWidth * 0.85, 350);
 
 const CheckoutSuccessModalStyle = StyleSheet.create({
   centeredView: {
@@ -7,9 +10,9 @@ const CheckoutSuccessModalStyle = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    margin: 20,
+    margin: screenWidth * 0.05,
     borderRadius: 16,
-    padding: 35,
+    padding: screenHeight * 0.04,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -19,24 +22,24 @@ const CheckoutSuccessModalStyle = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    minWidth: 280,
+    minWidth: modalWidth,
     borderWidth: 1,
   },
   successIcon: {
-    fontSize: 48,
+    fontSize: screenWidth * 0.12,
     fontWeight: 'bold',
     marginBottom: 15,
   },
   modalTitle: {
     marginBottom: 15,
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: screenWidth * 0.05,
     fontWeight: '700',
   },
   modalText: {
     marginBottom: 25,
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: screenWidth * 0.035,
     lineHeight: 20,
   },
   button: {
@@ -48,7 +51,7 @@ const CheckoutSuccessModalStyle = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: screenWidth * 0.04,
     fontWeight: '600',
   },
 });
