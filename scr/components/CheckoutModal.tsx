@@ -54,7 +54,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({
               style={[CheckoutModalStyle.confirmButton, { backgroundColor: colors.accent }]}
               onPress={onConfirm}
             >
-              <Text style={CheckoutModalStyle.confirmButtonText}>Checkout</Text>
+              <Text style={CheckoutModalStyle.confirmButtonText}>Confirm</Text>
             </Pressable>
           </View>
         </View>

@@ -22,17 +22,22 @@ export default function HomeScreen() {
   const { colors } = useTheme();
   usePreventGoBack();
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<{ id: string; name: string; price: number } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ id: string; name: string; price: number; image: string } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleAddToCart = (item: { id: string; name: string; price: number }) => {
+  const handleAddToCart = (item: { id: string; name: string; price: number; image: string }) => {
     setSelectedItem(item);
     setModalVisible(true);
   };
 
   const confirmAddToCart = () => {
     if (selectedItem) {
-      addToCart(selectedItem);
+      addToCart({
+        id: selectedItem.id,
+        name: selectedItem.name,
+        price: selectedItem.price,
+        image: selectedItem.image,
+      });
       setModalVisible(false);
       setSelectedItem(null);
     }

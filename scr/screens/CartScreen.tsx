@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BottomBar from '../components/BottomBar';
 import RemoveFromCartModal from '../components/RemoveFromCartModal';
 import CheckoutButton from '../components/CheckoutButton';
-import CheckoutModal from '../components/CheckoutModal';
-import CheckoutSuccessModal from '../components/CheckoutSuccessModal';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartStyle from '../styles/CartStyle';
 import { usePreventGoBack } from '../handler/usePreventGoBack';
 import { getImageSource } from '../Item/Items';
 
+type RootStackParamList = {
+  Checkout: undefined;
+};
+
+type CartScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Checkout'>;
+
 const CartScreen: React.FC = () => {
-  const { cart, increment, decrement, remove, clear } = useCart();
+  const navigation = useNavigation<CartScreenNavigationProp>();
+  const { cart, increment, decrement, remove } = useCart();
   const { colors } = useTheme();
   usePreventGoBack();
   const [modalVisible, setModalVisible] = useState(false);
-  const [checkoutModalVisible, setCheckoutModalVisible] = useState(false);
-  const [successModalVisible, setSuccessModalVisible] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
 
@@ -46,22 +51,6 @@ const CartScreen: React.FC = () => {
     setSelectedItemId(null);
     setSelectedItemName(null);
   };
-
-  const confirmCheckout = () => {
-    clear();
-    setCheckoutModalVisible(false);
-    setSuccessModalVisible(true);
-  };
-
-  const cancelCheckout = () => {
-    setCheckoutModalVisible(false);
-  };
-
-  const dismissSuccessModal = () => {
-    setSuccessModalVisible(false);
-  };
-
-  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -109,7 +98,7 @@ const CartScreen: React.FC = () => {
                   </View>
                   <CheckoutButton 
                     onPress={() => {
-                      setCheckoutModalVisible(true);
+                      navigation.navigate('Checkout');
                     }}
                     disabled={cart.length === 0}
                   />
@@ -126,18 +115,6 @@ const CartScreen: React.FC = () => {
         itemName={selectedItemName}
         onConfirm={confirmRemove}
         onCancel={cancelRemove}
-      />
-
-      <CheckoutModal
-        visible={checkoutModalVisible}
-        total={totalAmount}
-        onConfirm={confirmCheckout}
-        onCancel={cancelCheckout}
-      />
-
-      <CheckoutSuccessModal
-        visible={successModalVisible}
-        onDismiss={dismissSuccessModal}
       />
 
       <BottomBar />

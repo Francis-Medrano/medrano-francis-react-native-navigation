@@ -5,11 +5,12 @@ export type CartItem = {
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 };
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (item: { id: string; name: string; price: number }) => void;
+  addToCart: (item: { id: string; name: string; price: number; image?: string }) => void;
   increment: (id: string) => void;
   decrement: (id: string) => void;
   remove: (id: string) => void;

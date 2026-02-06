@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
 import { useTheme } from '../context/ThemeContext';
 import createAppNavigatorScreenOptions from '../styles/AppNavigatorStyle';
 
@@ -11,6 +12,7 @@ type RootStackParamList = {
   Home: undefined;
   Cart: undefined;
   Settings: undefined;
+  Checkout: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,6 +38,11 @@ export default function AppNavigator() {
         <Stack.Screen 
           name="Settings" 
           component={SettingsScreen}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Checkout" 
+          component={CheckoutScreen}
           options={{ headerShown: true }}
         />
       </Stack.Navigator>
