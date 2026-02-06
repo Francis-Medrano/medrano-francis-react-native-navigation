@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList, Pressable, Image } from 'react-native';
+import { Text, View, FlatList, Pressable, Image, TextInput } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
 import { useCart } from '../context/CartContext';
@@ -21,6 +21,7 @@ export default function HomeScreen() {
   usePreventGoBack();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ id: string; name: string; price: number } | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleAddToCart = (item: { id: string; name: string; price: number }) => {
     setSelectedItem(item);
@@ -39,6 +40,10 @@ export default function HomeScreen() {
     setModalVisible(false);
     setSelectedItem(null);
   };
+
+  const filteredItems = items.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const getImageSource = (imageName: string) => {
     const imageMap: { [key: string]: any } = {
@@ -74,8 +79,22 @@ export default function HomeScreen() {
 
   return (
     <View style={[HomeStyle.container, { backgroundColor: colors.background }]}>
+      <TextInput
+        style={[
+          HomeStyle.searchBar,
+          {
+            backgroundColor: colors.secondary,
+            color: colors.text,
+            borderColor: colors.border,
+          },
+        ]}
+        placeholder="Search items..."
+        placeholderTextColor={colors.textSecondary}
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
       <FlatList
-        data={items}
+        data={filteredItems}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         numColumns={2}

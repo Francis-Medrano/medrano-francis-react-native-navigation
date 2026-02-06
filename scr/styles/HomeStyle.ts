@@ -9,6 +9,16 @@ const HomeStyle = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
+  searchBar: {
+    height: screenWidth * 0.12,
+    borderRadius: 8,
+    paddingHorizontal: screenWidth * 0.04,
+    marginHorizontal: screenWidth * 0.02,
+    marginTop: screenWidth * 0.04,
+    marginBottom: screenWidth * 0.04,
+    fontSize: screenWidth * 0.04,
+    borderWidth: 1,
+  },
   list: {
     alignItems: 'center',
   },

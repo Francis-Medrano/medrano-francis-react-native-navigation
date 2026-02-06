@@ -48,8 +48,6 @@ const RemoveFromCartModalStyle = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     elevation: 2,
-    backgroundColor: 'transparent',
-    borderWidth: 1.5,
     alignItems: 'center',
   },
   confirmButton: {
@@ -60,6 +58,7 @@ const RemoveFromCartModalStyle = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButtonText: {
+    color: '#fff',
     fontSize: screenWidth * 0.04,
     fontWeight: '600',
   },
