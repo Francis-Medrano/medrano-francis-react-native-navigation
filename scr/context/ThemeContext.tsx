@@ -21,10 +21,10 @@ interface ThemeContextType {
 }
 
 const lightColors: ThemeColors = {
-  background: '#FFFFFF',
+  background: '#fafafa',
   text: '#1a1a1a',
   textSecondary: '#6B7280',
-  primary: '#6366F1',
+  primary: '#1a1a1a',
   secondary: '#F3F4F6',
   border: '#E5E7EB',
   accent: '#fd0000',

@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import BottomBar from '../components/BottomBar';
 import AddToCartModal from '../components/AddToCartModal';
+import { usePreventGoBack } from '../handler/usePreventGoBack';
 
 const items = itemsData.map((item, i) => ({
   id: i.toString(),
@@ -17,6 +18,7 @@ const items = itemsData.map((item, i) => ({
 export default function HomeScreen() {
   const { addToCart } = useCart();
   const { colors } = useTheme();
+  usePreventGoBack();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ id: string; name: string; price: number } | null>(null);
 

@@ -3,9 +3,11 @@ import { View, Text, Pressable, Switch } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import SettingsStyle from '../styles/SettingsStyle';
 import BottomBar from '../components/BottomBar';
+import { usePreventGoBack } from '../handler/usePreventGoBack';
 
 const SettingsScreen: React.FC = () => {
   const { theme, colors, toggleTheme } = useTheme();
+  usePreventGoBack();
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>

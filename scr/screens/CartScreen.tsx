@@ -8,10 +8,12 @@ import CheckoutSuccessModal from '../components/CheckoutSuccessModal';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartStyle from '../styles/CartStyle';
+import { usePreventGoBack } from '../handler/usePreventGoBack';
 
 const CartScreen: React.FC = () => {
   const { cart, increment, decrement, remove, clear } = useCart();
   const { colors } = useTheme();
+  usePreventGoBack();
   const [modalVisible, setModalVisible] = useState(false);
   const [checkoutModalVisible, setCheckoutModalVisible] = useState(false);
   const [successModalVisible, setSuccessModalVisible] = useState(false);
