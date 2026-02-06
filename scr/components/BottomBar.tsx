@@ -19,7 +19,11 @@ const BottomBar: React.FC = () => {
   const { colors, theme } = useTheme();
   
   return (
-    <View style={[BottomBarStyle.container, { backgroundColor: theme === 'dark' ? colors.background : '#222' }]}>
+    <View style={[BottomBarStyle.container, { 
+      backgroundColor: theme === 'dark' ? colors.secondary : '#FAFBFC',
+      borderTopColor: colors.border,
+      borderTopWidth: 1,
+    }]}>
       <Pressable
         style={BottomBarStyle.button}
         onPress={() =>

@@ -5,9 +5,12 @@ export type ThemeType = 'light' | 'dark';
 export interface ThemeColors {
   background: string;
   text: string;
+  textSecondary: string;
   primary: string;
   secondary: string;
   border: string;
+  accent: string;
+  success: string;
 }
 
 interface ThemeContextType {
@@ -19,18 +22,24 @@ interface ThemeContextType {
 
 const lightColors: ThemeColors = {
   background: '#FFFFFF',
-  text: '#000000',
-  primary: '#007AFF',
-  secondary: '#E5E5EA',
-  border: '#C6C6C6',
+  text: '#1a1a1a',
+  textSecondary: '#6B7280',
+  primary: '#6366F1',
+  secondary: '#F3F4F6',
+  border: '#E5E7EB',
+  accent: '#fd0000',
+  success: '#10B981',
 };
 
 const darkColors: ThemeColors = {
-  background: '#1C1C1E',
-  text: '#FFFFFF',
-  primary: '#0A84FF',
-  secondary: '#3A3A3C',
-  border: '#545458',
+  background: '#0F172A',
+  text: '#F1F5F9',
+  textSecondary: '#CBD5E1',
+  primary: '#818CF8',
+  secondary: '#1E293B',
+  border: '#334155',
+  accent: '#F87171',
+  success: '#34D399',
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

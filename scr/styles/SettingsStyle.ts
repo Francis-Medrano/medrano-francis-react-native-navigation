@@ -3,18 +3,19 @@ import { StyleSheet } from 'react-native';
 const SettingsStyle = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 24,
+    fontWeight: '700',
+    marginBottom: 28,
+    marginTop: 8,
   },
   settingItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 16,
+    paddingVertical: 18,
     borderBottomWidth: 1,
   },
   settingLabel: {

@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, Pressable } from 'react-native';
 import BottomBar from '../components/BottomBar';
+import RemoveFromCartModal from '../components/RemoveFromCartModal';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartStyle from '../styles/CartStyle';
@@ -8,11 +9,41 @@ import CartStyle from '../styles/CartStyle';
 const CartScreen: React.FC = () => {
   const { cart, increment, decrement, remove } = useCart();
   const { colors } = useTheme();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+  const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
+
+  const handleDecrement = (itemId: string, itemName: string) => {
+    const item = cart.find(i => i.id === itemId);
+    if (item && item.quantity === 1) {
+      setSelectedItemId(itemId);
+      setSelectedItemName(itemName);
+      setModalVisible(true);
+    } else {
+      decrement(itemId);
+    }
+  };
+
+  const confirmRemove = () => {
+    if (selectedItemId) {
+      remove(selectedItemId);
+      setModalVisible(false);
+      setSelectedItemId(null);
+      setSelectedItemName(null);
+    }
+  };
+
+  const cancelRemove = () => {
+    setModalVisible(false);
+    setSelectedItemId(null);
+    setSelectedItemName(null);
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={[CartStyle.container, { backgroundColor: colors.background }]}>
         {cart.length === 0 ? (
-          <Text style={{ color: colors.text + '80', marginTop: 16 }}>Your cart is empty.</Text>
+          <Text style={{ color: colors.textSecondary, marginTop: 16 }}>Your cart is empty.</Text>
         ) : (
           <>
             <FlatList
@@ -22,19 +53,19 @@ const CartScreen: React.FC = () => {
                 <View style={[CartStyle.cartItemRow, { backgroundColor: colors.secondary }]}>
                   <Text style={[CartStyle.cartItemName, { color: colors.text }]}>{item.name}</Text>
                   <View style={CartStyle.cartItemActions}>
-                    <TouchableOpacity
+                    <Pressable
                       style={[CartStyle.actionButton, { backgroundColor: colors.secondary }]}
-                      onPress={() => decrement(item.id)}
+                      onPress={() => handleDecrement(item.id, item.name)}
                     >
                       <Text style={[CartStyle.actionButtonText, { color: colors.text }]}>-</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                     <Text style={[CartStyle.cartItemQuantity, { color: colors.text }]}>{item.quantity}</Text>
-                    <TouchableOpacity
+                    <Pressable
                       style={[CartStyle.actionButton, { backgroundColor: colors.secondary }]}
                       onPress={() => increment(item.id)}
                     >
                       <Text style={[CartStyle.actionButtonText, { color: colors.text }]}>+</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                   </View>
                   <Text style={[CartStyle.cartItemPrice, { color: colors.text }]}>₱{item.price * item.quantity}</Text>
                 </View>
@@ -55,6 +86,14 @@ const CartScreen: React.FC = () => {
           </>
         )}
       </View>
+
+      <RemoveFromCartModal
+        visible={modalVisible}
+        itemName={selectedItemName}
+        onConfirm={confirmRemove}
+        onCancel={cancelRemove}
+      />
+
       <BottomBar />
     </View>
   );

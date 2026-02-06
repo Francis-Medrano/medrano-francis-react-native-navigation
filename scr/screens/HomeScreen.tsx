@@ -1,10 +1,11 @@
-import React from 'react';
-import { Text, View, FlatList, Pressable, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, FlatList, Pressable } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import BottomBar from '../components/BottomBar';
+import AddToCartModal from '../components/AddToCartModal';
 
 const items = itemsData.map((item, i) => ({
   id: i.toString(),
@@ -15,16 +16,37 @@ const items = itemsData.map((item, i) => ({
 export default function HomeScreen() {
   const { addToCart } = useCart();
   const { colors } = useTheme();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<{ id: string; name: string; price: number } | null>(null);
+
+  const handleAddToCart = (item: { id: string; name: string; price: number }) => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  };
+
+  const confirmAddToCart = () => {
+    if (selectedItem) {
+      addToCart(selectedItem);
+      setModalVisible(false);
+      setSelectedItem(null);
+    }
+  };
+
+  const cancelAddToCart = () => {
+    setModalVisible(false);
+    setSelectedItem(null);
+  };
+
   const renderItem = ({ item }: { item: { id: string; name: string; price: number } }) => (
     <View style={[HomeStyle.item, { backgroundColor: colors.secondary }]}>
       <Text style={[HomeStyle.itemText, { color: colors.text }]}>{item.name}</Text>
-      <Text style={{ fontSize: 16, color: colors.text + '80', marginTop: 8 }}>₱{item.price}</Text>
-      <TouchableOpacity
-        style={HomeStyle.addToCartButton}
-        onPress={() => addToCart(item)}
+      <Text style={{ fontSize: 16, color: colors.textSecondary, marginTop: 8 }}>₱{item.price}</Text>
+      <Pressable
+        style={[HomeStyle.addToCartButton, { backgroundColor: colors.primary }]}
+        onPress={() => handleAddToCart(item)}
       >
         <Text style={HomeStyle.addToCartButtonText}>Add to Cart</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 
@@ -40,6 +62,14 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<View style={{ height: 130 }} />}
       />
+
+      <AddToCartModal
+        visible={modalVisible}
+        item={selectedItem}
+        onConfirm={confirmAddToCart}
+        onCancel={cancelAddToCart}
+      />
+
       <BottomBar />
     </View>
   );

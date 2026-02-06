@@ -10,8 +10,6 @@ const SettingsScreen: React.FC = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={[SettingsStyle.container, { backgroundColor: colors.background }]}>
-        <Text style={[SettingsStyle.title, { color: colors.text }]}>Settings</Text>
-
         <View style={[SettingsStyle.settingItem, { borderBottomColor: colors.border }]}>
           <Text style={[SettingsStyle.settingLabel, { color: colors.text }]}>
             Dark Mode

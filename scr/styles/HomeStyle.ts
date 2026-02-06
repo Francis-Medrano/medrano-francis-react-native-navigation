@@ -27,18 +27,18 @@ const HomeStyle = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   addToCartButton: {
     marginTop: 12,
-    backgroundColor: '#1000ee',
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 6,
+    borderRadius: 8,
   },
   addToCartButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '700',
+    fontSize: 14,
   },
 });
 
