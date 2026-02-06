@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList, Pressable } from 'react-native';
+import { Text, View, FlatList, Pressable, Image } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
 import { useCart } from '../context/CartContext';
@@ -11,6 +11,7 @@ const items = itemsData.map((item, i) => ({
   id: i.toString(),
   name: item.name,
   price: item.price,
+  image: item.image,
 }));
 
 export default function HomeScreen() {
@@ -37,8 +38,27 @@ export default function HomeScreen() {
     setSelectedItem(null);
   };
 
-  const renderItem = ({ item }: { item: { id: string; name: string; price: number } }) => (
+  const getImageSource = (imageName: string) => {
+    const imageMap: { [key: string]: any } = {
+      apple: require('../../assets/apple.jpeg'),
+      banana: require('../../assets/banana.jpeg'),
+      orange: require('../../assets/orange.jpeg'),
+      milk: require('../../assets/milk.jpeg'),
+      bread: require('../../assets/bread.jpeg'),
+      eggs: require('../../assets/eggs.jpeg'),
+      rice: require('../../assets/rice.jpeg'),
+      coffee: require('../../assets/coffee.jpeg'),
+      sugar: require('../../assets/sugar.jpeg'),
+      butter: require('../../assets/butter.jpeg'),
+    };
+    return imageMap[imageName] || null;
+  };
+
+  const renderItem = ({ item }: { item: { id: string; name: string; price: number; image: string } }) => (
     <View style={[HomeStyle.item, { backgroundColor: colors.secondary }]}>
+      {item.image && (
+        <Image source={getImageSource(item.image)} style={HomeStyle.itemImage} />
+      )}
       <Text style={[HomeStyle.itemText, { color: colors.text }]}>{item.name}</Text>
       <Text style={{ fontSize: 16, color: colors.textSecondary, marginTop: 8 }}>₱{item.price}</Text>
       <Pressable

@@ -40,6 +40,12 @@ const HomeStyle = StyleSheet.create({
     fontWeight: '700',
     fontSize: 14,
   },
+  itemImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
 });
 
 export { ITEM_WIDTH, ITEM_MARGIN };
