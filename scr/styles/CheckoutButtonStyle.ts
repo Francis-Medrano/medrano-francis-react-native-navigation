@@ -6,7 +6,7 @@ const CheckoutButtonStyle = StyleSheet.create({
   button: {
     paddingVertical: screenWidth * 0.035,
     paddingHorizontal: screenWidth * 0.06,
-    borderRadius: 8,
+    borderRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: screenWidth * 0.06,

@@ -50,7 +50,7 @@ const AddToCartModalStyle = StyleSheet.create({
   },
   cancelButton: {
     flex: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     padding: 12,
     elevation: 2,
     backgroundColor: 'transparent',
@@ -59,7 +59,7 @@ const AddToCartModalStyle = StyleSheet.create({
   },
   confirmButton: {
     flex: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     padding: 12,
     elevation: 2,
     alignItems: 'center',

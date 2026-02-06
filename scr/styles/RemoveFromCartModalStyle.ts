@@ -45,14 +45,16 @@ const RemoveFromCartModalStyle = StyleSheet.create({
   },
   cancelButton: {
     flex: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     padding: 12,
     elevation: 2,
+    backgroundColor: 'transparent',
+    borderWidth: 1.5,
     alignItems: 'center',
   },
   confirmButton: {
     flex: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     padding: 12,
     elevation: 2,
     alignItems: 'center',

@@ -25,7 +25,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ onPress, disabled = fal
       disabled={disabled}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <MaterialIcons name="shopping-cart-checkout" color="#FFFFFF" size={20} />
+        <MaterialIcons name="shopping-cart-checkout" color={colors.background} size={20} />
         <Text style={[CheckoutButtonStyle.buttonText, { color: colors.background }]}>Checkout</Text>
       </View>
     </Pressable>
