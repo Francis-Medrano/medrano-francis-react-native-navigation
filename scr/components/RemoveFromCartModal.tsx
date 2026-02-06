@@ -36,9 +36,9 @@ const RemoveFromCartModal: React.FC<RemoveFromCartModalProps> = ({
             Remove Item
           </Text>
           <Text style={[RemoveFromCartModalStyle.modalText, { color: colors.text }]}>
-            Remove{'\n'}
+            Remove{' '}
             <Text style={{ fontWeight: 'bold' }}>{itemName}</Text>
-            {'\n'}from your cart?
+            {' '}from your cart?
           </Text>
           <View style={RemoveFromCartModalStyle.buttonContainer}>
             <Pressable

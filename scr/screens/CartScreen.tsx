@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Pressable } from 'react-native';
+import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import BottomBar from '../components/BottomBar';
 import RemoveFromCartModal from '../components/RemoveFromCartModal';
 import CheckoutButton from '../components/CheckoutButton';
@@ -9,6 +9,7 @@ import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartStyle from '../styles/CartStyle';
 import { usePreventGoBack } from '../handler/usePreventGoBack';
+import { getImageSource } from '../Item/Items';
 
 const CartScreen: React.FC = () => {
   const { cart, increment, decrement, remove, clear } = useCart();
@@ -74,6 +75,10 @@ const CartScreen: React.FC = () => {
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
                 <View style={[CartStyle.cartItemRow, { backgroundColor: colors.secondary }]}>
+                  <Image 
+                    source={getImageSource(item.image)} 
+                    style={{ width: 40, height: 40, borderRadius: 8, marginRight: 12 }} 
+                  />
                   <Text style={[CartStyle.cartItemName, { color: colors.text }]}>{item.name}</Text>
                   <View style={CartStyle.cartItemActions}>
                     <Pressable

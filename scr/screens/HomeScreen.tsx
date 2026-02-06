@@ -73,7 +73,7 @@ export default function HomeScreen() {
         style={{ flex: 1 }}
         keyboardVerticalOffset={Platform.OS === 'android' ? 10 : 0}
       >
-        <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
+        <SearchBar value={searchQuery} onChangeText={setSearchQuery} noResults={searchQuery.length > 0 && filteredItems.length === 0} />
         <FlatList
           data={filteredItems}
           renderItem={renderItem}

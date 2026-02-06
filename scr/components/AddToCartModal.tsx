@@ -36,12 +36,13 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             Add to Cart
           </Text>
           <Text style={[AddToCartModalStyle.modalText, { color: colors.text }]}>
-            Are you sure you want to add{'\n'}
+            Are you sure you want to add {' '}
             <Text style={{ fontWeight: 'bold' }}>{item?.name}</Text>
-            {'\n'}to your cart?
+            {' '} to your cart?
           </Text>
-          <Text style={[AddToCartModalStyle.modalPrice, { color: colors.primary }]}>
-            ₱{item?.price}
+          <Text style={[AddToCartModalStyle.modalPrice, { color: colors.text }]}>
+            Price:{' '}
+            <Text style={{ fontWeight: 'bold' }}>₱{item?.price}</Text>
           </Text>
           <View style={AddToCartModalStyle.buttonContainer}>
             <Pressable
