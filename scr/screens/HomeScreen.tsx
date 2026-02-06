@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList, Pressable, Image, TextInput } from 'react-native';
+import { Text, View, FlatList, Pressable, Image, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
 import { useCart } from '../context/CartContext';
@@ -79,30 +79,36 @@ export default function HomeScreen() {
 
   return (
     <View style={[HomeStyle.container, { backgroundColor: colors.background }]}>
-      <TextInput
-        style={[
-          HomeStyle.searchBar,
-          {
-            backgroundColor: colors.secondary,
-            color: colors.text,
-            borderColor: colors.border,
-          },
-        ]}
-        placeholder="Search items..."
-        placeholderTextColor={colors.textSecondary}
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
-      <FlatList
-        data={filteredItems}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        numColumns={2}
-        contentContainerStyle={[HomeStyle.list, { paddingTop: 20 }]}
-        columnWrapperStyle={HomeStyle.row}
-        showsVerticalScrollIndicator={false}
-        ListFooterComponent={<View style={{ height: 130 }} />}
-      />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'android' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'android' ? 10 : 0}
+      >
+        <TextInput
+          style={[
+            HomeStyle.searchBar,
+            {
+              backgroundColor: colors.secondary,
+              color: colors.text,
+              borderColor: colors.border,
+            },
+          ]}
+          placeholder="Search items..."
+          placeholderTextColor={colors.textSecondary}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <FlatList
+          data={filteredItems}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          contentContainerStyle={[HomeStyle.list, { paddingTop: 20 }]}
+          columnWrapperStyle={HomeStyle.row}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={<View style={{ height: 130 }} />}
+        />
+      </KeyboardAvoidingView>
 
       <AddToCartModal
         visible={modalVisible}
