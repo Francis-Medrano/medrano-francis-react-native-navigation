@@ -7,7 +7,6 @@ const CartStyle = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
     paddingHorizontal: 0,
     width: screenWidth,
     alignSelf: 'center',
@@ -23,7 +22,6 @@ const CartStyle = StyleSheet.create({
     marginBottom: 12,
     paddingVertical: 4,
     paddingHorizontal: 12,
-    backgroundColor: '#f9f9f9',
     borderRadius: 6,
     width: screenWidth - 16,
     minHeight: 44,
@@ -32,7 +30,6 @@ const CartStyle = StyleSheet.create({
   cartItemName: {
     flex: 2,
     fontSize: 16,
-    color: '#222',
     fontWeight: '500',
     textAlign: 'left',
     paddingLeft: 4,
@@ -52,12 +49,10 @@ const CartStyle = StyleSheet.create({
   cartItemPrice: {
     flex: 1,
     fontSize: 16,
-    color: '#333',
     textAlign: 'right',
     paddingRight: 4,
   },
   actionButton: {
-    backgroundColor: '#eee',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 4,
@@ -67,10 +62,10 @@ const CartStyle = StyleSheet.create({
   },
   actionButtonText: {
     fontSize: 18,
-    color: '#333',
     fontWeight: 'bold',
     textAlign: 'center',
   },
 });
 
 export default CartStyle;
+

@@ -8,7 +8,6 @@ const BottomBarStyle = StyleSheet.create({
     bottom: 0,
     width: width,
     height: 120,
-    backgroundColor: '#222',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     shadowColor: '#000',
@@ -29,10 +28,10 @@ const BottomBarStyle = StyleSheet.create({
     paddingBottom: 60
   },
   buttonText: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
 });
 
 export default BottomBarStyle;
+

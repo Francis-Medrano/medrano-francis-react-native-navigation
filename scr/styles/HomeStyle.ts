@@ -7,7 +7,6 @@ const ITEM_WIDTH = (screenWidth - ITEM_MARGIN * 3) / 2;
 const HomeStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     paddingHorizontal: 16,
   },
   list: {
@@ -18,7 +17,6 @@ const HomeStyle = StyleSheet.create({
     marginBottom: ITEM_MARGIN,
   },
   item: {
-    backgroundColor: '#f2f2f2',
     borderRadius: 10,
     padding: 24,
     alignItems: 'center',
@@ -46,3 +44,4 @@ const HomeStyle = StyleSheet.create({
 
 export { ITEM_WIDTH, ITEM_MARGIN };
 export default HomeStyle;
+
