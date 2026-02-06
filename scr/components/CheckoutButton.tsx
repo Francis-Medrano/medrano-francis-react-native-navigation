@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTheme } from '../context/ThemeContext';
 import CheckoutButtonStyle from '../styles/CheckoutButtonStyle';
 
@@ -23,7 +24,10 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ onPress, disabled = fal
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={[CheckoutButtonStyle.buttonText, { color: colors.background }]}>Checkout</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+        <MaterialIcons name="shopping-cart-checkout" color="#FFFFFF" size={20} />
+        <Text style={[CheckoutButtonStyle.buttonText, { color: colors.background }]}>Checkout</Text>
+      </View>
     </Pressable>
   );
 };

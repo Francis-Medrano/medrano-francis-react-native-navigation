@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, FlatList, Pressable, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
-import itemsData from '../../items.json';
+import itemsData, { getImageSource } from '../Item/Items';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import BottomBar from '../components/BottomBar';
@@ -47,22 +47,6 @@ export default function HomeScreen() {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const getImageSource = (imageName: string) => {
-    const imageMap: { [key: string]: any } = {
-      apple: require('../../assets/apple.jpeg'),
-      banana: require('../../assets/banana.jpeg'),
-      orange: require('../../assets/orange.jpeg'),
-      milk: require('../../assets/milk.jpeg'),
-      bread: require('../../assets/bread.jpeg'),
-      eggs: require('../../assets/eggs.jpeg'),
-      rice: require('../../assets/rice.jpeg'),
-      coffee: require('../../assets/coffee.jpeg'),
-      sugar: require('../../assets/sugar.jpeg'),
-      butter: require('../../assets/butter.jpeg'),
-    };
-    return imageMap[imageName] || null;
-  };
-
   const renderItem = ({ item }: { item: { id: string; name: string; price: number; image: string } }) => (
     <View style={[HomeStyle.item, { backgroundColor: colors.secondary }]}>
       {item.image && (
@@ -75,7 +59,7 @@ export default function HomeScreen() {
         onPress={() => handleAddToCart(item)}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <MaterialIcons name="add-shopping-cart" color="#ffffff" size={24} />
+          <MaterialIcons name="add-shopping-cart" color="#ffffff" size={20} />
           <Text style={HomeStyle.addToCartButtonText}>Add to Cart</Text>
         </View>
       </Pressable>
