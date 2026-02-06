@@ -1,9 +1,8 @@
-
-
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTheme } from '../context/ThemeContext';
 import BottomBarStyle from '../styles/BottomBarStyle';
 
@@ -33,7 +32,7 @@ const BottomBar: React.FC = () => {
           })
         }
       >
-        <Text style={[BottomBarStyle.buttonText, { color: colors.text }]}>Home</Text>
+        <MaterialIcons name="home" color={colors.text} size={30} />
       </Pressable>
       <Pressable
         style={BottomBarStyle.button}
@@ -44,7 +43,7 @@ const BottomBar: React.FC = () => {
           })
         }
       >
-        <Text style={[BottomBarStyle.buttonText, { color: colors.text }]}>Cart</Text>
+        <MaterialIcons name="shopping-cart" color={colors.text} size={30} />
       </Pressable>
       <Pressable
         style={BottomBarStyle.button}
@@ -55,7 +54,7 @@ const BottomBar: React.FC = () => {
           })
         }
       >
-        <Text style={[BottomBarStyle.buttonText, { color: colors.text }]}>Settings</Text>
+         <MaterialIcons name="settings" color={colors.text} size={30} />
       </Pressable>
     </View>
   );

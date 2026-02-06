@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList, Pressable, Image, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, View, FlatList, Pressable, Image, KeyboardAvoidingView, Platform } from 'react-native';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import HomeStyle, { ITEM_WIDTH } from '../styles/HomeStyle';
 import itemsData from '../../items.json';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import BottomBar from '../components/BottomBar';
 import AddToCartModal from '../components/AddToCartModal';
+import SearchBar from '../components/SearchBar';
 import { usePreventGoBack } from '../handler/usePreventGoBack';
 
 const items = itemsData.map((item, i) => ({
@@ -72,7 +74,10 @@ export default function HomeScreen() {
         style={[HomeStyle.addToCartButton, { backgroundColor: colors.primary }]}
         onPress={() => handleAddToCart(item)}
       >
-        <Text style={HomeStyle.addToCartButtonText}>Add to Cart</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <MaterialIcons name="add-shopping-cart" color="#ffffff" size={24} />
+          <Text style={HomeStyle.addToCartButtonText}>Add to Cart</Text>
+        </View>
       </Pressable>
     </View>
   );
@@ -84,20 +89,7 @@ export default function HomeScreen() {
         style={{ flex: 1 }}
         keyboardVerticalOffset={Platform.OS === 'android' ? 10 : 0}
       >
-        <TextInput
-          style={[
-            HomeStyle.searchBar,
-            {
-              backgroundColor: colors.secondary,
-              color: colors.text,
-              borderColor: colors.border,
-            },
-          ]}
-          placeholder="Search items..."
-          placeholderTextColor={colors.textSecondary}
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
+        <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
         <FlatList
           data={filteredItems}
           renderItem={renderItem}
